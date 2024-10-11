@@ -1,0 +1,173 @@
+\documentclass{article}
+
+\usepackage{mdframed}
+\usepackage{xcolor}
+
+\title{Discovering Python}
+\author{Bertrand}
+
+\begin{document}
+\maketitle
+
+\section{Basics: python scripts and print function}
+
+
+A python script is a text file (with a \texttt{*.py} extension) containing lines of python code.
+When launching in the terminal the command\footnote{the following command requires my\_script.py to be in the current directory.} \texttt{python3 my\_script.py}, the python interpreter
+will read the script line by line and execute the lines of code, in order.
+If the interpreter does not understand a line of code, it stops and returns an error in the terminal.
+
+\paragraph{print function} In \texttt{my\_script.py}, there are 2 kinds of
+lines. Some start by '\#': they are comments, and are ignored by the interpreter.
+Others are of the form \texttt{print("something")}. \texttt{print} is a \textbf{function}, that prints out in the terminal whatever it is given within its
+parenthesis (in this case, "something").  
+
+\begin{mdframed}[backgroundcolor=black!20!white]
+Try to execute the script \texttt{my\_script.py}\\
+$\rightarrow$ Can you modify the script so that it prints \texttt{"Hello world"}
+only one time ?
+\end{mdframed}
+
+\begin{mdframed}[backgroundcolor=green!30!white]
+\textbf{Note}: The quotes (\texttt{""}) around \texttt{"hello world"}
+are required, so that the interpreter understand it is given text that should
+be printed directly (and not be read as python code).
+\end{mdframed}
+
+\section{Variables}
+
+\subsection{Definition}
+
+A variable is a piece of information (a number, a piece of text, $\dots$) that
+we ask the program to \textbf{store} under a \textbf{name}.
+
+For instance, if a line of code is \texttt{x = 10}, it means we are asking
+the program to store the value 10 under the name \texttt{x}. We may then
+use this variable as a number anywhere we want: to give to the print
+function (\texttt{print(x)}), to define another variable (par exemple 
+\texttt{y=x+2}) $\dots$
+
+\begin{mdframed}[backgroundcolor=black!20!white]
+Take a look at the script \texttt{variables.py}, and execute it. The questions
+are in two parts:
+\begin{itemize}
+\item Part 1:
+\begin{itemize}
+\item[$\rightarrow$] What will be the value of d ? You can uncomment one  
+of the lines to check.
+\item[$\rightarrow$] Likewise, what will be the value of e ? As above,
+print it to check. 
+\end{itemize}
+\item Part 2:
+\begin{itemize}
+\item[$\rightarrow$] Taking inspiration from the first note below, and
+un-commenting 
+the last line, how would you update \texttt{d} so that is value is augmented
+by 2 ? 
+\end{itemize}
+\end{itemize}
+\end{mdframed}
+
+\begin{mdframed}[backgroundcolor=green!30!white]
+\textbf{Note:} You can use the value of a variable to redefine it, and therefore
+update it. For instance:
+\begin{center}
+\texttt{x = x + 3}
+\end{center}
+increments the value of variable \texttt{x} by 3. If it was 10, it is now 13.
+\end{mdframed}
+
+\subsection{Variable type}
+
+Each variable has a \textbf{type}. For instance, the variables we have
+just played with were either integers (for instance \texttt{d})
+or strings of letters (for instance \texttt{s}).
+
+\begin{mdframed}[backgroundcolor=black!20!white]
+\begin{itemize}
+\item[$\rightarrow$] Try to put the line \texttt{z = s+d} in \texttt{variables.py}, and execute it. What happens ?
+Any idea why ?
+\item[$\rightarrow$] The function \texttt{str()} allows to convert (pretty much) anything
+into a string. Use it to convert d into a string so that the line above works.
+Take inspiration from the notes below.
+\end{itemize}
+\end{mdframed}
+
+\begin{mdframed}[backgroundcolor=green!30!white]
+\textbf{Note:} Some functions give an \textbf{output} that you may store in a
+variable, or use in the definition of a variable. For instance, the
+function \texttt{str} outputs a string. \texttt{z = str(3)} is the 
+same as \texttt{z = "3"}. If \texttt{a = 4} and \texttt{b = str(a)}
+then \texttt{b} is the string \texttt{"4"}.
+\end{mdframed}
+
+\begin{mdframed}[backgroundcolor=green!30!white]
+\textbf{Note: } The addition (\texttt{+}) on strings is the \textbf{concatenation}.
+For instance, if \texttt{x="abc"}, \texttt{y="def"} and \texttt{z=x+y},
+then \texttt{z} contains \texttt{"abcdef"}.
+\end{mdframed}
+
+\section{Loops and lists}
+
+\subsection{Lists}
+
+So far, we have seen two kinds of variables: integers and strings. We are
+going to enrich our knowledge with \textbf{lists}. A list contains
+several elements, along a given \textbf{order}.
+
+For example, the line of code
+\begin{center}
+    {\tt l = ["a","b","c"]}
+\end{center}
+
+defines a list containing three strings, one equal to {\tt "a"}, one equal
+to {\tt "b"}, and one equal to {\tt "c"}.
+
+To access the elements of a list, one can use \textbf{indices}. For instance,
+\begin{center}
+    {\tt x = l[0]}
+\end{center}
+followed by {\tt print(x)} should print {\tt "a"}. This is because the first
+element of a list is at position 0\footnote{Why not 1 ? It is more practical
+for it to be 0 in more general contexts. \#shh \#trustme}. {\tt l[1]} would have
+returned {\tt "b"}.
+
+\begin{mdframed}[backgroundcolor=black!20!white]
+\begin{itemize}
+    \item $\rightarrow$ How can you minimally modify the code of {\tt lists.py}
+        such that ``rouge'' is printed instead of ``bleu'' ?
+\end{itemize}
+\end{mdframed}
+
+\section{Functions and methods}
+\label{functions}
+
+We have already encountered a two functions: {\tt print} and {\tt str},
+which respectively print into the terminal, and convert variables to strings.
+
+More generally, a \textbf{function} takes as \textbf{input} one or
+several variables and either \textbf{outputs} other variables or
+act on the variables it is given as inputs. Some functions are
+\textbf{built-in}, that is to say already included in the python language.
+It is the case of the {\tt print} and {\tt str} functions. A non-built-in
+function is one the programmer defines. We are going to do that yet.
+
+Examples of built-in functions are given in the following table
+\begin{table}
+\centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    name & what it does & example \\
+    \hline
+        {\tt print} & print into the terminal & {\tt print("bonjour")}\\
+    \hline
+        {\tt str} & converts the input into a string & {\tt s=str(3)}\\
+    \hline
+        
+    \end{tabular}
+    \caption{Some built-in functions in python. This table is referred to in Section~\ref{functions}.}
+\end{table}
+
+
+
+\end{document}
