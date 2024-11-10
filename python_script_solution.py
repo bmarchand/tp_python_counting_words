@@ -19,5 +19,10 @@ for line in open(fname).readlines():
 
     words = line.split(' ')
 
+    num_words += len(words)
+    
+    for word in words:
+        num_characters += len(word)
+
 print("the text has",num_words,"words")
 print("the text has",num_characters,"characters")

@@ -1,5 +1,6 @@
 \documentclass{article}
 
+\usepackage{array}
 \usepackage{listings}
 \usepackage{mdframed}
 \usepackage{xcolor}
@@ -194,8 +195,7 @@ the code, this variable is just equal to 0.
 }
 
 
-\section{Functions and methods}
-\label{functions}
+\section{Putting it all together: counting words and characters in a text}
 
 We have already encountered a two functions: {\tt print} and {\tt str},
 which respectively print into the terminal, and convert variables to strings.
@@ -205,10 +205,7 @@ several variables and either \textbf{outputs} other variables or
 act on the variables it is given as inputs. Some functions are
 \textbf{built-in}, that is to say already included in the python language.
 It is the case of the {\tt print} and {\tt str} functions. A non-built-in
-function is one the programmer defines. We have not done that yet,
-and will do that now.
-
-
+function is one the programmer defines. 
 Examples of built-in functions are given in the following table.
 \begin{center}
     \begin{tabular}{|c|c|c|}
@@ -222,7 +219,44 @@ Examples of built-in functions are given in the following table.
     \end{tabular}
 \end{center}
 
-\subsection{Functions}
+Here, we will only use built-in functions. This section introduces
+new built-in functions and built-in objects that, put together,
+will allow us to count the number of words and characters in a
+text given as input.
+
+The following table introduces these new objects:
+
+\begin{center}
+\begin{tabular}{|c|c|m{7cm}|}
+    \hline
+    name & usage & what it does \\
+    \hline
+    {\tt open} & {\tt f = open(filename)} & Given the name of a text file (a string, in the example, called {\tt filename}), returns a {\tt File} (in the example, named {\tt f}). \\
+    \hline
+    {\tt readlines} & {\tt lines = f.readlines()} & This one is a \textbf{method},
+    it is called on an object with a ``{\tt .}'' after the object. {\tt f} must be
+    a {\tt File}, and the result, {\tt lines}, is a list of the lines of
+    the text contained in the {\tt File} object. A line is whatever
+    is between characters ``{\tt \textbackslash n}'', the end-of-line
+    character. Each line
+    is a string.\\
+    \hline
+    {\tt rstrip} & {\tt line = line.rstrip('\textbackslash n') } & Remove the end-of-line character from the end of a string, if it is present. \\ 
+    \hline
+    {\tt split} & {\tt words = line.split(' ')} & Given a string ({\tt line}),
+    it ``cuts'' the string at every space ({\tt ' '}) and returns a list
+    of the pieces of string in between the spaces ({\tt words} is a list of 
+    strings).\\
+    \hline
+\end{tabular}
+\end{center}
+
+\exercise{
+Given what you have learned on for loops,  variables, and printing, complete the
+code in {\tt python\_script.py} so that at the end of the script, the total
+number of words, and the total number of characters in the text ``text1'' are
+printed. 
+}
 
 
 \end{document}
