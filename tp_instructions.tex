@@ -1,13 +1,28 @@
 \documentclass{article}
 
+\usepackage{listings}
 \usepackage{mdframed}
 \usepackage{xcolor}
+
+\newcommand{\note}[1]{
+\begin{mdframed}[backgroundcolor=green!30!white]
+\textbf{Note:} #1
+\end{mdframed}
+}
+
+\newcommand{\exercise}[1]{
+\begin{mdframed}[backgroundcolor=black!20!white]
+\textbf{Exercise:} #1
+\end{mdframed}
+}
 
 \title{Discovering Python}
 \author{Bertrand}
 
 \begin{document}
 \maketitle
+
+\tableofcontents
 
 \section{Basics: python scripts and print function}
 
@@ -22,17 +37,17 @@ lines. Some start by '\#': they are comments, and are ignored by the interpreter
 Others are of the form \texttt{print("something")}. \texttt{print} is a \textbf{function}, that prints out in the terminal whatever it is given within its
 parenthesis (in this case, "something").  
 
-\begin{mdframed}[backgroundcolor=black!20!white]
+\exercise{
 Try to execute the script \texttt{my\_script.py}\\
 $\rightarrow$ Can you modify the script so that it prints \texttt{"Hello world"}
 only one time ?
-\end{mdframed}
+}
 
-\begin{mdframed}[backgroundcolor=green!30!white]
-\textbf{Note}: The quotes (\texttt{""}) around \texttt{"hello world"}
+\note{
+The quotes (\texttt{""}) around \texttt{"hello world"}
 are required, so that the interpreter understand it is given text that should
 be printed directly (and not be read as python code).
-\end{mdframed}
+}
 
 \section{Variables}
 
@@ -47,7 +62,7 @@ use this variable as a number anywhere we want: to give to the print
 function (\texttt{print(x)}), to define another variable (par exemple 
 \texttt{y=x+2}) $\dots$
 
-\begin{mdframed}[backgroundcolor=black!20!white]
+\exercise{
 Take a look at the script \texttt{variables.py}, and execute it. The questions
 are in two parts:
 \begin{itemize}
@@ -66,16 +81,16 @@ the last line, how would you update \texttt{d} so that is value is augmented
 by 2 ? 
 \end{itemize}
 \end{itemize}
-\end{mdframed}
+}
 
-\begin{mdframed}[backgroundcolor=green!30!white]
-\textbf{Note:} You can use the value of a variable to redefine it, and therefore
+\note{
+You can use the value of a variable to redefine it, and therefore
 update it. For instance:
 \begin{center}
 \texttt{x = x + 3}
 \end{center}
 increments the value of variable \texttt{x} by 3. If it was 10, it is now 13.
-\end{mdframed}
+}
 
 \subsection{Variable type}
 
@@ -83,7 +98,7 @@ Each variable has a \textbf{type}. For instance, the variables we have
 just played with were either integers (for instance \texttt{d})
 or strings of letters (for instance \texttt{s}).
 
-\begin{mdframed}[backgroundcolor=black!20!white]
+\exercise{
 \begin{itemize}
 \item[$\rightarrow$] Try to put the line \texttt{z = s+d} in \texttt{variables.py}, and execute it. What happens ?
 Any idea why ?
@@ -91,21 +106,21 @@ Any idea why ?
 into a string. Use it to convert d into a string so that the line above works.
 Take inspiration from the notes below.
 \end{itemize}
-\end{mdframed}
+}
 
-\begin{mdframed}[backgroundcolor=green!30!white]
+\note{
 \textbf{Note:} Some functions give an \textbf{output} that you may store in a
 variable, or use in the definition of a variable. For instance, the
 function \texttt{str} outputs a string. \texttt{z = str(3)} is the 
 same as \texttt{z = "3"}. If \texttt{a = 4} and \texttt{b = str(a)}
 then \texttt{b} is the string \texttt{"4"}.
-\end{mdframed}
+}
 
-\begin{mdframed}[backgroundcolor=green!30!white]
+\note{
 \textbf{Note: } The addition (\texttt{+}) on strings is the \textbf{concatenation}.
 For instance, if \texttt{x="abc"}, \texttt{y="def"} and \texttt{z=x+y},
 then \texttt{z} contains \texttt{"abcdef"}.
-\end{mdframed}
+}
 
 \section{Loops and lists}
 
@@ -133,17 +148,51 @@ for it to be 0 in more general contexts. \#shh \#trustme}. {\tt l[1]} would have
 returned {\tt "b"}.
 
 \begin{mdframed}[backgroundcolor=black!20!white]
+
 \begin{itemize}
     \item $\rightarrow$ How can you minimally modify the code of {\tt lists.py}
         such that ``rouge'' is printed instead of ``bleu'' ?
     \item $\rightarrow$ Try out the following:
-        \begin{center}
-            {\tt for c in l:}\\
-            {\tt \,\,\,print(c)}
-        \end{center}
-        Note that there must be exactly 4 spaces (or 1 tab) before print(c). Can you explain what is happening ?
+        \begin{lstlisting}[language=Python]
+            for c in l:
+                print(c)
+        \end{lstlisting}
+        Note that there must be exactly 4 spaces (or 1 tab\footnote{If it is
+        not the case, the ``tab'' in the text editor in which you code should
+        be re-defined as
+        four spaces.}) before print(c).
+        Can you explain what is happening ?
 \end{itemize}
 \end{mdframed}
+
+\note{You have just seen your first example of a \textbf{for loop}.
+Given a list (in the example above, {\tt l}), it goes through each elements
+(in the example above, {\tt c}) and executes for each element the
+same piece of code (in the example above, {\tt print(c)}). 
+This piece of code must be tabulated four spaces further than the ``for'' keyword.
+If it is not tabulated correctly, python will complain and not
+execute the code.
+}
+
+\subsection{For loop}
+
+Take a look at the file {\tt for\_loop.py}.
+In its initial state, what it does is the following:
+it iterates over each word in the list {\tt l} ({\tt l} is 
+a list of strings, i.e.\,a list of words), and
+prints the length of each word.
+It then prints the variable {\tt total\_length}, but unless we modify
+the code, this variable is just equal to 0.
+
+\exercise{
+\begin{itemize}
+    \item $\rightarrow$ How can we modify the code so that
+        at every iteration of the for loop, {\tt total\_length}
+        is updated, in order to hold at the end of the loop the sum
+        of the lengths of all words in the list ?
+\end{itemize}
+}
+
 
 \section{Functions and methods}
 \label{functions}
@@ -156,11 +205,12 @@ several variables and either \textbf{outputs} other variables or
 act on the variables it is given as inputs. Some functions are
 \textbf{built-in}, that is to say already included in the python language.
 It is the case of the {\tt print} and {\tt str} functions. A non-built-in
-function is one the programmer defines. We are going to do that yet.
+function is one the programmer defines. We have not done that yet,
+and will do that now.
 
-Examples of built-in functions are given in the following table
-\begin{table}
-\centering
+
+Examples of built-in functions are given in the following table.
+\begin{center}
     \begin{tabular}{|c|c|c|}
     \hline
     name & what it does & example \\
@@ -169,11 +219,10 @@ Examples of built-in functions are given in the following table
     \hline
         {\tt str} & converts the input into a string & {\tt s=str(3)}\\
     \hline
-        
     \end{tabular}
-    \caption{Some built-in functions in python. This table is referred to in Section~\ref{functions}.}
-\end{table}
+\end{center}
 
+\subsection{Functions}
 
 
 \end{document}
