@@ -191,10 +191,23 @@ the code, this variable is just equal to 0.
         at every iteration of the for loop, {\tt total\_length}
         is updated, in order to hold at the end of the loop the sum
         of the lengths of all words in the list ?
+        Do not hesitate to take inspiration from the note below.
 \end{itemize}
 }
 
 
+\note{Try out the following code:\\
+{\tt x=0}\\
+{\tt for y in [1,2,3]:}\\
+{\tt \textcolor{green!30!white}{aaaa}x=x+y}\\
+{\tt print(x)}
+\\~\\
+In this code, a for loop is run over the list [1,2,3] with variable {\tt y},
+so {\tt y} takes value 1, then 2, then 3.\\
+With this information, how do you explain the value that {\tt x} has acquired
+at the moment
+it is printed ?
+}
 \section{Putting it all together: counting words and characters in a text}
 
 We have already encountered a two functions: {\tt print} and {\tt str},
